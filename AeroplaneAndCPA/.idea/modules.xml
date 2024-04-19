@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/AeroplaneAndCPA.iml" filepath="$PROJECT_DIR$/.idea/AeroplaneAndCPA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AeroplaneAndCPA/SectionA/SectionA.iml" filepath="$PROJECT_DIR$/AeroplaneAndCPA/SectionA/SectionA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AeroplaneAndCPA/SectionB/SectionB.iml" filepath="$PROJECT_DIR$/AeroplaneAndCPA/SectionB/SectionB.iml" />
+    </modules>
+  </component>
+</project>
