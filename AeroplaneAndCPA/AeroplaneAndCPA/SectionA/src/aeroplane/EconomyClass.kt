@@ -1,17 +1,14 @@
 package aeroplane
 
-open class EconomyClass(name: String, surname: String, age: Int) : Passenger(name, surname) {
-    protected var age: Int
+open class EconomyClass(firstName: String, lastName: String, private val age: Int) : Passenger(firstName, lastName) {
 
     init {
-        assert(age >= 0) { "Age >= 0" }
-        this.age = age
+        require (age > 0) { "Age must be greater than 0" }
     }
 
-    override val isAdult: Boolean
-        get() = age >= 18
+    override fun isAdult(): Boolean = age >= 18
 
     override fun toString(): String {
-        return "Economy Class Passenger: " + super.toString() + " is " + age + " years old"
+        return "$age year old Economy Class Passenger: " + super.toString()
     }
 }

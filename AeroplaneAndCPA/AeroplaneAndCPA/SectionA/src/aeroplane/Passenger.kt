@@ -1,9 +1,12 @@
 package aeroplane
 
-abstract class Passenger(protected var name: String, protected var surname: String) {
-    abstract val isAdult: Boolean
+abstract class Passenger(
+    protected val firstName: String,
+    protected val lastName: String
+) {
+    protected abstract fun isAdult():Boolean
 
     override fun toString(): String {
-        return "$name $surname"
+        return "$firstName $lastName"
     }
 }

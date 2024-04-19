@@ -1,9 +1,9 @@
 package aeroplane
 
-class BusinessClass(name: String, surname: String, age: Int, private val luxury: Luxury) :
-    EconomyClass(name, surname, age) {
+class BusinessClass(firstName: String, lastName: String, private val age: Int, private val luxury: Luxury) :
+    EconomyClass(firstName, lastName, age) {
+
     override fun toString(): String {
-        return ("Business Class Passenger: " + name + " " + surname + " is " + age + " years old" + " has luxury: "
-                + luxury)
+        return ("$age year old Business Class Passenger: $firstName $lastName who likes $luxury" )
     }
 }

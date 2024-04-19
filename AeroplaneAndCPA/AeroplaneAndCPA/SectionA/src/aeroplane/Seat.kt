@@ -4,6 +4,12 @@ class Seat(private val row: Int, private val letter: Char) {
     private val MAXROW = 50
     private val MAXLETTER = 'F'
     private val EMERGENCYEXITS = listOf(1,10,30)
+    private val CREW_FIRST_ROW: Int = 1
+    private val CREW_LAST_ROW: Int = 1
+    private val BUSINESS_FIRST_ROW: Int = 2
+    private val BUSINESS_LAST_ROW: Int = 15
+    private val ECONOMY_FIRST_ROW: Int = 16
+    private val ECONOMY_LAST_ROW: Int = 50
 
     init {
         require (row in 1..MAXROW)
@@ -11,8 +17,6 @@ class Seat(private val row: Int, private val letter: Char) {
     }
 
     fun isEmergencyExit() = row in EMERGENCYEXITS
-
-
 
     fun hasNext(): Boolean = row != MAXROW || letter != MAXLETTER
 
@@ -23,15 +27,11 @@ class Seat(private val row: Int, private val letter: Char) {
         }
         return Seat(row, letter + 1)
     }
+    fun isCrew():Boolean = row in CREW_FIRST_ROW..CREW_LAST_ROW
 
-    companion object {
-        const val SMALLEST_LETTER: Char = 'A'
-        const val CREW_ROW: Int = 1
-        const val BUSINESS_FIRST_ROW: Int = 2
-        const val BUSINESS_LAST_ROW: Int = 15
-        const val ECONOMY_FIRST_ROW: Int = 16
-        const val ECONOMY_LAST_ROW: Int = 50
-    }
+    fun isBusiness():Boolean = row in BUSINESS_FIRST_ROW..BUSINESS_LAST_ROW
+
+    fun isEconomy():Boolean = row in ECONOMY_FIRST_ROW..ECONOMY_LAST_ROW
 
     override fun toString(): String {
         return "$letter$row"

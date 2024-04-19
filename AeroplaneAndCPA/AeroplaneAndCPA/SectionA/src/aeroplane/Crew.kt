@@ -1,8 +1,8 @@
 package aeroplane
 
-class Crew(name: String, surname: String) : Passenger(name, surname) {
-    override val isAdult: Boolean
-        get() = true
+class Crew(firstName: String, surName: String) : Passenger(firstName, surName) {
+
+    override fun isAdult(): Boolean = true
 
     override fun toString(): String {
         return "Crew: " + super.toString()

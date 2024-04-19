@@ -16,6 +16,24 @@ class SeatAllocator {
         passenger: Passenger?,
         first: Seat?, last: Seat
     ) {
+        var currentSeat = first ?: //something else
+        val allocated = false
+        while (!allocated) {
+            if (canUse(passenger, currentSeat)) {
+
+            }
+            else{
+                if (currentSeat == last || !currentSeat.hasNext()) {}
+                currentSeat = currentSeat.next()
+            }
+        }
+    }
+    /*
+     @Throws(AeroplaneFullException::class)
+    private fun allocateInRange(
+        passenger: Passenger?,
+        first: Seat?, last: Seat
+    ) {
         var added = false
         var isLast = first == last
         var current = first
@@ -38,7 +56,13 @@ class SeatAllocator {
             throw AeroplaneFullException()
         }
     }
+    */
 
+    @Throws(IOException::class, AeroplaneFullException::class)
+    fun allocate(filename: String?) {
+
+    }
+    /*
     @Throws(IOException::class, AeroplaneFullException::class)
     fun allocate(filename: String?) {
         val br = BufferedReader(FileReader(filename))
@@ -59,7 +83,7 @@ class SeatAllocator {
                 println("Skipping malformed line of input")
             }
         }
-    }
+    } */
 
     @Throws(IOException::class, MalformedDataException::class, AeroplaneFullException::class)
     private fun allocateCrew(br: BufferedReader) {
