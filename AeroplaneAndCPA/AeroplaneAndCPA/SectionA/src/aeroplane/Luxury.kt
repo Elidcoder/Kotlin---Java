@@ -1,12 +1,11 @@
-package aeroplane;
+package aeroplane
 
-public enum Luxury {
+import java.util.*
 
-	CHAMPAGNE, TRUFFLES, STRAWBERRIES;
-	
-	@Override
-	public String toString() {
-		return super.toString().toLowerCase();
-	}
-	
+enum class Luxury {
+    CHAMPAGNE, TRUFFLES, STRAWBERRIES;
+
+    override fun toString(): String {
+        return super.toString().lowercase(Locale.getDefault())
+    }
 }

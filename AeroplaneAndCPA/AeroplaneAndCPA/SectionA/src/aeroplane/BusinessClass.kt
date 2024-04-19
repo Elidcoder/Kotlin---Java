@@ -1,18 +1,9 @@
-package aeroplane;
+package aeroplane
 
-public class BusinessClass extends EconomyClass {
-
-  private Luxury luxury;
-
-  public BusinessClass(String name, String surname, int age, Luxury luxury) {
-    super(name, surname, age);
-    this.luxury = luxury;
-  }
-
-  @Override
-  public String toString() {
-    return "Business Class Passenger: " + name + " " + surname + " is " + age + " years old" + " has luxury: "
-        + luxury;
-  }
-
+class BusinessClass(name: String, surname: String, age: Int, private val luxury: Luxury) :
+    EconomyClass(name, surname, age) {
+    override fun toString(): String {
+        return ("Business Class Passenger: " + name + " " + surname + " is " + age + " years old" + " has luxury: "
+                + luxury)
+    }
 }

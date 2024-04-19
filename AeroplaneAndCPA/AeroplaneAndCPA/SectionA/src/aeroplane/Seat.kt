@@ -1,68 +1,63 @@
-package aeroplane;
+package aeroplane
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+class Seat(private val row: Int, private val letter: Char) {
+    private val MAXROW = 50
+    private val MAXLETTER = 'F'
+    private val EMERGENCYEXITS = listOf(1,10,30)
 
-public class Seat {
-
-	private String rowLetter;
-	private int row;
-	private char letter;
-	public final static Set<Integer> EMERGENCY_EXIT_ROWS = new HashSet<>();
-	public final static int TOTAL_NUMBER_OF_ROWS = 50;
-  public final static char BIGGEST_LETTER = 'F';
-  public final static char SMALLEST_LETTER = 'A';
-  public final static int CREW_ROW = 1;
-  public final static int BUSINESS_FIRST_ROW = 2;
-  public final static int BUSINESS_LAST_ROW = 15;
-  public final static int ECONOMY_FIRST_ROW = 16;
-  public final static int ECONOMY_LAST_ROW = 50;
-
-  public Seat(int row, char letter) {
-    assert (letter >= SMALLEST_LETTER && letter <= BIGGEST_LETTER): "Error";
-    this.rowLetter = "" + row + letter;
-    this.letter = letter;
-    this.row = row;
-    EMERGENCY_EXIT_ROWS.addAll(Arrays.asList(1, 30, 10));
-  }
-
-  public boolean isEmergencyExit() {
-    return EMERGENCY_EXIT_ROWS.contains(row);
-  }
-
-  public boolean hasNext() {
-    return ((row < TOTAL_NUMBER_OF_ROWS) || (row == TOTAL_NUMBER_OF_ROWS) && (letter < BIGGEST_LETTER));
-  }
-
-  public Seat next() {
-
-    if (hasNext()) {
-      if (letter == BIGGEST_LETTER) {
-        return new Seat(row + 1, 'A');
-      } else {
-        return new Seat(row, (char) (letter + 1));
-      }
-    } else {
-      throw new java.util.NoSuchElementException();
+    init {
+        require (row in 1..MAXROW)
+        require (letter in 'A'..MAXLETTER)
     }
 
-  }
+    fun isEmergencyExit() = row in EMERGENCYEXITS
 
-  @Override
-  public boolean equals(Object other) {
-    if (!(other instanceof Seat)) {
-      return false;
-    } else {
-      Seat otherSeat = (Seat) other;
-      return (row == otherSeat.row) && (letter == otherSeat.letter);
+
+
+    fun hasNext(): Boolean = row != MAXROW || letter != MAXLETTER
+
+    fun next(): Seat {
+        require(hasNext()) { NoSuchElementException() }
+        if (letter == MAXLETTER) {
+            return Seat(row + 1, 'A')
+        }
+        return Seat(row, letter + 1)
     }
-  }
 
-  @Override
-  public int hashCode() {
-    return (int) Math.pow(row, (int) letter);
-  }
+    companion object {
+        const val SMALLEST_LETTER: Char = 'A'
+        const val CREW_ROW: Int = 1
+        const val BUSINESS_FIRST_ROW: Int = 2
+        const val BUSINESS_LAST_ROW: Int = 15
+        const val ECONOMY_FIRST_ROW: Int = 16
+        const val ECONOMY_LAST_ROW: Int = 50
+    }
 
+    override fun toString(): String {
+        return "$letter$row"
+    }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Seat
+
+        if (row != other.row) return false
+        if (letter != other.letter) return false
+        if (MAXROW != other.MAXROW) return false
+        if (MAXLETTER != other.MAXLETTER) return false
+        if (EMERGENCYEXITS != other.EMERGENCYEXITS) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = row
+        result = 31 * result + letter.hashCode()
+        result = 31 * result + MAXROW
+        result = 31 * result + MAXLETTER.hashCode()
+        result = 31 * result + EMERGENCYEXITS.hashCode()
+        return result
+    }
 }

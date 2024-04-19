@@ -1,7 +1,5 @@
-package aeroplane;
+package aeroplane
 
-public class AeroplaneFullException extends Exception {
-
-	private static final long serialVersionUID = 1L;
-
+object AeroplaneFullException : Exception() {
+    private const val serialVersionUID = 1L
 }

@@ -1,18 +1,10 @@
-package aeroplane;
+package aeroplane
 
-public class Crew extends Passenger {
+class Crew(name: String, surname: String) : Passenger(name, surname) {
+    override val isAdult: Boolean
+        get() = true
 
-  public Crew(String name, String surname) {
-    super(name, surname);
-  }
-
-  public boolean isAdult() {
-    return true;
-  }
-
-  @Override
-  public String toString() {
-    return "Crew: " + super.toString();
-  }
-
+    override fun toString(): String {
+        return "Crew: " + super.toString()
+    }
 }

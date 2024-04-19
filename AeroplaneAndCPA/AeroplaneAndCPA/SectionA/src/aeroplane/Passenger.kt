@@ -1,19 +1,9 @@
-package aeroplane;
+package aeroplane
 
-public abstract class Passenger {
+abstract class Passenger(protected var name: String, protected var surname: String) {
+    abstract val isAdult: Boolean
 
-	protected String name;
-	protected String surname;
-
-  public Passenger(String name, String surname) {
-    this.name = name;
-    this.surname = surname;
-  }
-
-  public abstract boolean isAdult();
-
-  public String toString() {
-    return name + " " + surname;
-  }
-
+    override fun toString(): String {
+        return "$name $surname"
+    }
 }

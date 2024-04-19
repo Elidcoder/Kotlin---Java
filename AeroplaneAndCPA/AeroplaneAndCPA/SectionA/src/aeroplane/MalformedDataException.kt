@@ -1,7 +1,5 @@
-package aeroplane;
+package aeroplane
 
-public class MalformedDataException extends Exception {
-
-	private static final long serialVersionUID = 1L;
-
+object MalformedDataException : Exception() {
+    private const val serialVersionUID = 1L
 }

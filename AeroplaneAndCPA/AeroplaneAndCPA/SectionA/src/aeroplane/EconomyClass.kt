@@ -1,22 +1,17 @@
-package aeroplane;
+package aeroplane
 
-public class EconomyClass extends Passenger {
+open class EconomyClass(name: String, surname: String, age: Int) : Passenger(name, surname) {
+    protected var age: Int
 
-  protected int age;
+    init {
+        assert(age >= 0) { "Age >= 0" }
+        this.age = age
+    }
 
-  public EconomyClass(String name, String surname, int age) {
-    super(name, surname);
-    assert (age >= 0): "Age >= 0";
-    this.age = age;
-  }
+    override val isAdult: Boolean
+        get() = age >= 18
 
-  public boolean isAdult() {
-    return age >= 18;
-  }
-
-  @Override
-  public String toString() {
-    return "Economy Class Passenger: " + super.toString() + " is " + age + " years old";
-  }
-
+    override fun toString(): String {
+        return "Economy Class Passenger: " + super.toString() + " is " + age + " years old"
+    }
 }
