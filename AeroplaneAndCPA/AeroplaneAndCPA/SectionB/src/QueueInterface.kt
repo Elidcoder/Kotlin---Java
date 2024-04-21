@@ -1,9 +1,7 @@
-public interface QueueInterface<T> {
-	
-	public void enqueue(T newEntry);
+interface QueueInterface<T> {
+    fun enqueue(newEntry: T)
 
-	public T dequeue();
-	
-	public boolean isEmpty();
-	
+    fun dequeue(): T
+
+    val isEmpty: Boolean
 }

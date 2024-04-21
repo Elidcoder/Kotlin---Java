@@ -1,7 +1,1 @@
-public class ListIndexOutOfBoundsException extends IndexOutOfBoundsException{
-
-	public ListIndexOutOfBoundsException(String s){
-		super(s);
-	}
-	
-}
+class ListIndexOutOfBoundsException(s: String?) : IndexOutOfBoundsException(s)

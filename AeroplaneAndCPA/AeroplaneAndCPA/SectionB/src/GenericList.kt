@@ -1,114 +1,101 @@
-import java.util.Iterator;
+class GenericList<T> // end default constructor;
+    : GenericListInterface<T?> {
+    private var head: Node<T?>? = null //reference to the first element in the list
+    private var numItems = 0 // number of items in the list
 
-public class GenericList<T> implements GenericListInterface<T>{
+    override val isEmpty: Boolean
+        get() = (numItems == 0) // end isEmpty
 
-	private Node<T> head;      //reference to the first element in the list
-	private int numItems;	   // number of items in the list
+    override fun size(): Int {
+        return numItems
+    } // end size
 
-	public GenericList(){
-		numItems = 0;
-		head = null;
-	}// end default constructor;
+    private fun find(pos: Int): Node<T?>? {
+        var curr = head
+        for (skip in 1 until pos) {
+            curr = curr!!.next
+        }
+        return curr
+    } //end find
 
-	public boolean isEmpty(){
-		return (numItems == 0);
-	}// end isEmpty
+    @Throws(ListIndexOutOfBoundsException::class)
+    override fun get(pos: Int): T? {
+        if (pos >= 1 && pos <= numItems) {
+            val curr = find(pos)
+            val dataItem = curr!!.item
+            return dataItem
+        } else {
+            throw ListIndexOutOfBoundsException("position out of range in get")
+        }
+    } // end get
 
-	public int size() {return numItems;}// end size
+    @Throws(ListIndexOutOfBoundsException::class)
+    override fun add(pos: Int, item: T?) {
+        if (pos >= 1 && pos <= numItems + 1) {
+            if (pos == 1) {
+                val newNode = Node(item)
+                newNode.next = head
+                head = newNode
+            } else {
+                val newNode = Node(item)
+                val prev = find(pos - 1)
+                newNode.next = prev!!.next
+                prev.next = newNode
+            }
+            numItems++
+        } else {
+            throw ListIndexOutOfBoundsException("position out of range in add")
+        }
+    } // end add
 
-	private Node<T> find(int pos){
-		Node<T> curr = head;
-		for (int skip = 1; skip < pos; skip++){
-			curr = curr.getNext();
-		}
-		return curr;
-	}//end find
+    @Throws(ListIndexOutOfBoundsException::class)
+    override fun remove(pos: Int) {
+        if (pos >= 1 && pos <= numItems) {
+            if (pos == 1) {
+                head = head!!.next
+            } else {
+                val prev = find(pos - 1)
+                val curr = prev!!.next
+                prev.next =curr!!.next
+            }
+            numItems--
+        } else {
+            throw ListIndexOutOfBoundsException("position out of range in remove")
+        }
+    } // end remove
 
-	public T get(int pos) throws ListIndexOutOfBoundsException{
-		if (pos >= 1 && pos <= numItems)
-		{ Node<T> curr = find(pos);
-		  T dataItem = curr.getItem();
-		  return dataItem;
-		}
-		else {throw new ListIndexOutOfBoundsException("position out of range in get");}
-	}// end get
+    //post:  Returns a list iterator object. 
+    override fun iterator(): MutableIterator<T> = GenericListIterator(head) as MutableIterator<T>
 
-	public void add(int pos, T item) throws ListIndexOutOfBoundsException{
-		if (pos >=1 && pos <= numItems+1){
-			if (pos == 1)
-			{ Node<T> newNode = new Node<T>(item);
-			  newNode.setNext(head);
-			  head = newNode;
-			}
-			else
-			{ Node<T> newNode = new Node<T>(item);
-			  Node<T> prev = find(pos-1);
-			  newNode.setNext(prev.getNext());
-			  prev.setNext(newNode);
-			}
-			numItems++;
-		}
-		else { throw new ListIndexOutOfBoundsException("position out of range in add");}
-	}// end add
 
-	public void remove(int pos) throws ListIndexOutOfBoundsException{
-			if (pos >=1 && pos <= numItems){
-				if (pos == 1){ head = head.getNext(); }
-				else {
-				  Node<T> prev = find(pos-1);
-				  Node<T> curr = prev.getNext();
-  				  prev.setNext(curr.getNext());
-			 	}
-				numItems--;
-			}
-			else {
-			 	throw new ListIndexOutOfBoundsException("position out of range in remove");
-			}
-	}// end remove
-	
-	//post:  Returns a list iterator object. 
-	public Iterator<T> iterator() {
-		return new GenericListIterator(head);
-	}	
-     
-    
-   	private class GenericListIterator implements Iterator<T> {
+    private inner class GenericListIterator(private var current: Node<T?>?) : MutableIterator<T?> {
+        private var lastReturned: Node<T?>? = null
 
-		private Node<T> current;
-		private Node<T> lastReturned;
-
-		public GenericListIterator(Node<T> node) {
-			current = node;
-			lastReturned = null;
-		}
-
-		/*
+        /*
 		 * (non-Javadoc)
 		 * @see java.util.Iterator#hasNext()
 		 */
-		public boolean hasNext() {
-			return current != null;
-		}
+        override fun hasNext(): Boolean {
+            return current != null
+        }
 
-		/*
+        /*
 		 * (non-Javadoc)
 		 * @see java.util.Iterator#next()
 		 */
-		public T next() {
-			T result = current.getItem();
-			lastReturned = current;
-			current = current.getNext();
-			return result;
-		}
-		
-		public void remove() {
-			throw new UnsupportedOperationException();
-		}
-		
-	}
-	
-	
-}//end GenericList<T>
+        override fun next(): T? {
+            val result = current!!.item
+            lastReturned = current
+            current = current!!.next
+            return result
+        }
+
+        override fun remove() {
+            throw UnsupportedOperationException()
+        }
+    }
+} //end GenericList<T>
+
 
 
 

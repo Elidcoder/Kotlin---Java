@@ -5,7 +5,7 @@ import java.io.FileNotFoundException
 import java.io.FileReader
 import java.util.*
 
-class GraphKotlin(projectFile: String) : GraphInterface {
+class Graph(projectFile: String) : GraphInterface {
     private var start: GraphNode? = null
     private var finish: GraphNode? = null
 
@@ -26,7 +26,7 @@ class GraphKotlin(projectFile: String) : GraphInterface {
     private fun setIncomingDegreeRecursively(node: GraphNode?) {
         var count = 0
 
-        for (edge in node.getIncomingEdges()) {
+        for (edge in node!!.getIncomingEdges()) {
             count++
         }
 
@@ -45,7 +45,8 @@ class GraphKotlin(projectFile: String) : GraphInterface {
     //      another node indicates that there is a path from the former node to the latter 
     //      node in the event-node graph.   
     private fun topologicalSort(): QueueInterface<GraphNode> {
-        val tempQueue: QueueInterface<GraphNode> = java.util.Queue<Any>
+        TODO()/*
+        val tempQueue: QueueInterface<GraphNode> = Queue<Any>
         val resultQueue: QueueInterface<GraphNode> = java.util.Queue<Any>
 
         setIncomingDegree()
@@ -65,7 +66,7 @@ class GraphKotlin(projectFile: String) : GraphInterface {
             }
         }
 
-        return resultQueue
+        return resultQueue*/
     }
 
 
@@ -105,12 +106,13 @@ class GraphKotlin(projectFile: String) : GraphInterface {
     val earliestCompletionTime: Int
         get() {
             computeEarliestCompletionTime()
-            return finish.EarliestCompletionTime()
+            return finish!!.EarliestCompletionTime()
         }
 
 
     @Throws(FileNotFoundException::class)
     private fun parseGraph(inputFile: String) {
+        TODO()/*
         // each project input file has the following format:
         // 1. first line is an integer N, followed by N lines:
         // a. each of these N lines has the format "task_name task_duration"
@@ -224,7 +226,11 @@ class GraphKotlin(projectFile: String) : GraphInterface {
                     }
                 }
             }
-        }
+        }*/
+    }
+
+    override fun getEarliestCompletionTime(): Int {
+        TODO("Not yet implemented")
     }
 }
 

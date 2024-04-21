@@ -1,6 +1,5 @@
-public interface GraphInterface{
-
-	public int getEarliestCompletionTime() throws GraphException;
-
+interface GraphInterface {
+    @get:Throws(GraphException::class)
+    val earliestCompletionTime: Int
 }
 

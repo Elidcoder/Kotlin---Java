@@ -1,54 +1,34 @@
-public class GraphNode {
-	
-	private static int count = 0;
-	
-	private String label;
-	private GenericListInterface<GraphEdge> incomingEdges;
-	private GenericListInterface<GraphEdge> outgoingEdges;
-	private int ec;
-	private int degree;
-	
-	public GraphNode() {
-		label = String.valueOf(count++);	            // generate unique id for each node instance
-		incomingEdges = new GenericList<GraphEdge>();
-		outgoingEdges = new GenericList<GraphEdge>();
-	}
-	
-	public String getLabel() {
-		return label;
-	}
-	
-	public void addIncomingEdge(GraphEdge in) {
-		incomingEdges.add(1, in);
-	}
-	
-	public GenericListInterface<GraphEdge> getIncomingEdges() {
-		return incomingEdges;
-	}
-	
-	public void addOutgoingEdge(GraphEdge out) {
-		outgoingEdges.add(1, out);
-	}
-	
-	public GenericListInterface<GraphEdge> getOutgoingEdges() {
-		return outgoingEdges;
-	}
-	
-	public void setEarliestCompletionTime(int ec) {
-		this.ec = ec;
-	}
-	
-	public int EarliestCompletionTime() {
-		return ec;
-	}
+class GraphNode {
+    val label: String
+    val incomingEdges: GenericListInterface<GraphEdge?>
+    val outgoingEdges: GenericListInterface<GraphEdge?>
+    private var ec = 0
+    var degree: Int = 0
 
-	public int getDegree() {
-		return degree;
-	}
+    init {
+        label = count++.toString() // generate unique id for each node instance
+        incomingEdges = GenericList()
+        outgoingEdges = GenericList()
+    }
 
-	public void setDegree(int degree) {
-		this.degree = degree;
-	}
-	
-	
+    fun addIncomingEdge(`in`: GraphEdge?) {
+        incomingEdges.add(1, `in`)
+    }
+
+    fun addOutgoingEdge(out: GraphEdge?) {
+        outgoingEdges.add(1, out!!)
+    }
+
+    fun setEarliestCompletionTime(ec: Int) {
+        this.ec = ec
+    }
+
+    fun EarliestCompletionTime(): Int {
+        return ec
+    }
+
+
+    companion object {
+        private var count = 0
+    }
 }

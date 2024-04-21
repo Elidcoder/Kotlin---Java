@@ -1,18 +1,18 @@
-public interface GenericListInterface<T> extends Iterable<T>{
-
-	
-	public int size();
-
-	
-	public boolean isEmpty();
-
-	
-	public T get(int index) throws ListIndexOutOfBoundsException;
-
-	
-	public void add(int index, T newItem) throws ListIndexOutOfBoundsException;
+interface GenericListInterface<T> : Iterable<T> {
+    fun size(): Int
 
 
-	public void remove(int index) throws ListIndexOutOfBoundsException;
+    val isEmpty: Boolean
 
+
+    @Throws(ListIndexOutOfBoundsException::class)
+    fun get(index: Int): T
+
+
+    @Throws(ListIndexOutOfBoundsException::class)
+    fun add(index: Int, newItem: T)
+
+
+    @Throws(ListIndexOutOfBoundsException::class)
+    fun remove(index: Int)
 }

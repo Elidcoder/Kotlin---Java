@@ -1,6 +1,6 @@
 package Solutions
 
-class QueueKotlin<T> : QueueInterface<T> {
+class Queue<T> : QueueInterface<T> {
     private var first: Node<T>? = null
     private var last: Node<T>? = null
 
@@ -8,13 +8,13 @@ class QueueKotlin<T> : QueueInterface<T> {
         get() = last == null
 
     //post: Adds the given item to the queue
-    fun enqueue(item: T) {
+    override fun enqueue(item: T) {
         val newNode: Node<T> = Node<T>(item)
 
         if (isEmpty) {
             first = newNode
         } else {
-            last.setNext(newNode)
+            last?.setNext(newNode)
         }
 
         last = newNode
@@ -23,18 +23,22 @@ class QueueKotlin<T> : QueueInterface<T> {
     //post: Removes and returns the head of the queue. It throws an 
     //      exception if the queue is empty.
     @Throws(QueueException::class)
-    fun dequeue(): T {
+    override fun dequeue(): T {
         if (isEmpty) {
             throw QueueException("Error! Queue is empty!")
         } else {
-            val oldHead: T = first.getItem()
+            val oldHead: T = first!!.getItem()
             if (first === last) {
                 first = null
                 last = null
             } else {
-                first = first.getNext()
+                first = first!!.getNext()
             }
             return oldHead
         }
+    }
+
+    override fun isEmpty(): Boolean {
+        TODO("Not yet implemented")
     }
 }

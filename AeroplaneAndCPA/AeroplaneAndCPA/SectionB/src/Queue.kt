@@ -1,44 +1,37 @@
-public class Queue<T> implements QueueInterface<T>{
-	
-	private Node<T> first;
-	private Node<T> last;
-	
-	public boolean isEmpty() {
-		return last == null;
-	}
-	
-	//post: Adds the given item to the queue
-	public void enqueue(T item) {
+class Queue<T> : QueueInterface<T?> {
+    private var first: Node<T?>? = null
+    private var last: Node<T?>? = null
 
-	  Node<T> newNode = new Node<T>(item);
+    override val isEmpty: Boolean
+        get() = last == null
 
-	  if (isEmpty()) {
-	    first = newNode;
-    } else {
-      last.setNext(newNode);
+    //post: Adds the given item to the queue
+    override fun enqueue(item: T?) {
+        val newNode = Node(item)
+        if (isEmpty){
+            first = newNode
+        }
+        else{
+            last!!.next = newNode
+        }
+        last = newNode
     }
 
-    last = newNode;
-
-	}
-	
-	//post: Removes and returns the head of the queue. It throws an 
-	//      exception if the queue is empty.
-	public T dequeue() throws QueueException {
-
-	  if (isEmpty()) {
-	    throw new QueueException("Error! Queue is empty!");
-    } else {
-      T oldHead = first.getItem();
-	    if (first == last) {
-	      first = null;
-	      last = null;
-      } else {
-        first = first.getNext();
-      }
-      return oldHead;
-	  }
-
-	}
-	
+    //post: Removes and returns the head of the queue. It throws an 
+    //      exception if the queue is empty.
+    @Throws(QueueException::class)
+    override fun dequeue(): T {
+        if (isEmpty){
+            throw NoSuchElementException()
+        }
+        else{
+            assert (first != null)
+            val topNode = first
+            first = first!!.next
+            if (first == null){
+                last = null
+            }
+            return topNode!!.item as T
+        }
+    }
 }

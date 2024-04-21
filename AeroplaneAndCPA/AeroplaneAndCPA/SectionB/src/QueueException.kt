@@ -1,7 +1,1 @@
-public class QueueException extends RuntimeException{
-
-	public QueueException(String s){
-		super(s);
-	}
-	
-}
+class QueueException(s: String?) : RuntimeException(s)
