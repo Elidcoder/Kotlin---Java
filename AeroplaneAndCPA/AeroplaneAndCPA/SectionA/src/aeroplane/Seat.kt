@@ -1,15 +1,16 @@
 package aeroplane
 
+ val MAXROW = 50
+ val MAXLETTER = 'F'
+ val EMERGENCYEXITS = listOf(1,10,30)
+ val CREW_FIRST_ROW: Int = 1
+ val CREW_LAST_ROW: Int = 1
+ val BUSINESS_FIRST_ROW: Int = 2
+ val BUSINESS_LAST_ROW: Int = 15
+ val ECONOMY_FIRST_ROW: Int = 16
+ val ECONOMY_LAST_ROW: Int = 50
 class Seat(private val row: Int, private val letter: Char) {
-    private val MAXROW = 50
-    private val MAXLETTER = 'F'
-    private val EMERGENCYEXITS = listOf(1,10,30)
-    private val CREW_FIRST_ROW: Int = 1
-    private val CREW_LAST_ROW: Int = 1
-    private val BUSINESS_FIRST_ROW: Int = 2
-    private val BUSINESS_LAST_ROW: Int = 15
-    private val ECONOMY_FIRST_ROW: Int = 16
-    private val ECONOMY_LAST_ROW: Int = 50
+
 
     init {
         require (row in 1..MAXROW)
@@ -45,9 +46,6 @@ class Seat(private val row: Int, private val letter: Char) {
 
         if (row != other.row) return false
         if (letter != other.letter) return false
-        if (MAXROW != other.MAXROW) return false
-        if (MAXLETTER != other.MAXLETTER) return false
-        if (EMERGENCYEXITS != other.EMERGENCYEXITS) return false
 
         return true
     }
