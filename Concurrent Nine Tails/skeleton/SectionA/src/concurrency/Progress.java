@@ -42,139 +42,138 @@ public class Progress {
 
 	private static void testQuestion1() {
 
-//        System.out.println("================");
-//        System.out.println("Question 1 tests");
-//        System.out.println("================");
-//
-//        Set<String> variables = new HashSet<>();
-//        variables.add("a");
-//        variables.add("b");
-//        Store store = new Store(variables);
-//
-//        Stmt wait1 = new WaitStmt(new IdentifierExpr("a"), new
-//                IdentifierExpr("b"));
-//        Stmt wait2 = new WaitStmt(new IdentifierExpr("a"), new
-//                LiteralExpr(1));
-//
-//        checkExpectedVersusActual(true, wait1.isEnabled(store));
-//        checkExpectedVersusActual(false, wait2.isEnabled(store));
-//
-//        new AssignStmt("a", new LiteralExpr(1)).execute(store);
-//
-//        checkExpectedVersusActual(false, wait1.isEnabled(store));
-//        checkExpectedVersusActual(true, wait2.isEnabled(store));
+        System.out.println("================");
+        System.out.println("Question 1 tests");
+        System.out.println("================");
+
+        Set<String> variables = new HashSet<>();
+        variables.add("a");
+        variables.add("b");
+        Store store = new Store(variables);
+
+        Stmt wait1 = new WaitStmt(new IdentifierExpr("a"), new
+                IdentifierExpr("b"));
+        Stmt wait2 = new WaitStmt(new IdentifierExpr("a"), new
+                LiteralExpr(1));
+
+        checkExpectedVersusActual(true, wait1.isEnabled(store));
+        checkExpectedVersusActual(false, wait2.isEnabled(store));
+
+        new AssignStmt("a", new LiteralExpr(1)).execute(store);
+
+        checkExpectedVersusActual(false, wait1.isEnabled(store));
+        checkExpectedVersusActual(true, wait2.isEnabled(store));
 
 	}
 
 	private static void testQuestion2() throws DeadlockException {
 
-//        System.out.println("================");
-//        System.out.println("Question 2 tests");
-//        System.out.println("================");
-//
-//        {
-//            ConcurrentProgram program = makeExampleProgram();
-//            Scheduler roundRobin = new RoundRobinScheduler();
-//            checkExpectedVersusActual(0, roundRobin.chooseThread(program));
-//            program.step(0);
-//            checkExpectedVersusActual(1, roundRobin.chooseThread(program));
-//            program.step(1);
-//            checkExpectedVersusActual(2, roundRobin.chooseThread(program));
-//            program.step(2);
-//            checkExpectedVersusActual(0, roundRobin.chooseThread(program));
-//            program.step(0);
-//            checkExpectedVersusActual(1, roundRobin.chooseThread(program));
-//            program.step(1);
-//            checkExpectedVersusActual(2, roundRobin.chooseThread(program));
-//            program.step(2);
-//        }
-//
-//        {
-//            ConcurrentProgram program = makeExampleProgram2();
-//            Scheduler roundRobin = new RoundRobinScheduler();
-//            checkExpectedVersusActual(3, roundRobin.chooseThread(program));
-//            program.step(3);
-//            checkExpectedVersusActual(2, roundRobin.chooseThread(program));
-//            program.step(2);
-//            checkExpectedVersusActual(2, roundRobin.chooseThread(program));
-//            program.step(2);
-//            checkExpectedVersusActual(1, roundRobin.chooseThread(program));
-//            program.step(1);
-//            checkExpectedVersusActual(1, roundRobin.chooseThread(program));
-//            program.step(1);
-//            checkExpectedVersusActual(0, roundRobin.chooseThread(program));
-//            program.step(0);
-//        }
-//
-//        {
-//            try {
-//                ConcurrentProgram program = makeExampleProgram3();
-//                Scheduler roundRobin = new RoundRobinScheduler();
-//                roundRobin.chooseThread(program);
-//                System.out.println("MISMATCH: DeadlockException should have been thrown");
-//                mismatches++;
-//            } catch (DeadlockException e) {
-//                System.out.println("MATCH: DeadlockException was thrown as expected");
-//            }
-//        }
+        System.out.println("================");
+        System.out.println("Question 2 tests");
+        System.out.println("================");
+
+        {
+            ConcurrentProgram program = makeExampleProgram();
+            Scheduler roundRobin = new RoundRobinScheduler();
+            checkExpectedVersusActual(0, roundRobin.chooseThread(program));
+            program.step(0);
+            checkExpectedVersusActual(1, roundRobin.chooseThread(program));
+            program.step(1);
+            checkExpectedVersusActual(2, roundRobin.chooseThread(program));
+            program.step(2);
+            checkExpectedVersusActual(0, roundRobin.chooseThread(program));
+            program.step(0);
+            checkExpectedVersusActual(1, roundRobin.chooseThread(program));
+            program.step(1);
+            checkExpectedVersusActual(2, roundRobin.chooseThread(program));
+            program.step(2);
+        }
+
+        {
+            ConcurrentProgram program = makeExampleProgram2();
+            Scheduler roundRobin = new RoundRobinScheduler();
+            checkExpectedVersusActual(3, roundRobin.chooseThread(program));
+            program.step(3);
+            checkExpectedVersusActual(2, roundRobin.chooseThread(program));
+            program.step(2);
+            checkExpectedVersusActual(2, roundRobin.chooseThread(program));
+            program.step(2);
+            checkExpectedVersusActual(1, roundRobin.chooseThread(program));
+            program.step(1);
+            checkExpectedVersusActual(1, roundRobin.chooseThread(program));
+            program.step(1);
+            checkExpectedVersusActual(0, roundRobin.chooseThread(program));
+            program.step(0);
+        }
+        {
+            try {
+                ConcurrentProgram program = makeExampleProgram3();
+                Scheduler roundRobin = new RoundRobinScheduler();
+                roundRobin.chooseThread(program);
+                System.out.println("MISMATCH: DeadlockException should have been thrown");
+                mismatches++;
+            } catch (DeadlockException e) {
+                System.out.println("MATCH: DeadlockException was thrown as expected");
+            }
+        }
 
 	}
 
 	private static void testQuestion3() {
 
-//        System.out.println("================");
-//        System.out.println("Question 3 tests");
-//        System.out.println("================");
-//
-//        {
-//            String result = new Executor(makeExampleProgram(), new
-//                    RoundRobinScheduler()).execute();
-//            checkExpectedVersusActual("Final state: [x -> 2, y -> 4]\nHistory: [0, 1, 2, 0, 1, 2]\nTermination status: graceful\n",
-//                    result);
-//        }
-//
-//        {
-//            String result = new Executor(makeExampleProgram2(), new
-//                    RoundRobinScheduler()).execute();
-//            checkExpectedVersusActual("Final state: [x -> 1, y -> 1, z -> 1]\nHistory: [3, 2, 2, 1, 1, 0]\nTermination status: graceful\n",
-//                    result);
-//        }
-//
-//        {
-//            String result = new Executor(makeExampleProgram3(), new
-//                    RoundRobinScheduler()).execute();
-//            checkExpectedVersusActual("Final state: [x -> 0]\nHistory: []\nTermination status: deadlock\n",
-//                    result);
-//        }
+        System.out.println("================");
+        System.out.println("Question 3 tests");
+        System.out.println("================");
+
+        {
+            String result = new Executor(makeExampleProgram(), new
+                    RoundRobinScheduler()).execute();
+            checkExpectedVersusActual("Final state: [x -> 2, y -> 4]\nHistory: [0, 1, 2, 0, 1, 2]\nTermination status: graceful\n",
+                    result);
+        }
+
+        {
+            String result = new Executor(makeExampleProgram2(), new
+                    RoundRobinScheduler()).execute();
+            checkExpectedVersusActual("Final state: [x -> 1, y -> 1, z -> 1]\nHistory: [3, 2, 2, 1, 1, 0]\nTermination status: graceful\n",
+                    result);
+        }
+
+        {
+            String result = new Executor(makeExampleProgram3(), new
+                    RoundRobinScheduler()).execute();
+            checkExpectedVersusActual("Final state: [x -> 0]\nHistory: []\nTermination status: deadlock\n",
+                    result);
+        }
 
 	}
 
 	private static void testQuestion4() {
 
-//        System.out.println("================");
-//        System.out.println("Question 4 tests");
-//        System.out.println("================");
-//
-//        {
-//            String result = new Executor(makeExampleProgram2(), new
-//                    FewestWaitsScheduler()).execute();
-//            checkExpectedVersusActual("Final state: [x -> 1, y -> 1, z -> 1]\nHistory: [3, 2, 2, 1, 1, 0]\nTermination status: graceful\n",
-//                    result);
-//        }
-//
-//        {
-//            String result = new Executor(makeExampleProgram3(), new
-//                    FewestWaitsScheduler()).execute();
-//            checkExpectedVersusActual("Final state: [x -> 0]\nHistory: []\nTermination status: deadlock\n",
-//                    result);
-//        }
-//
-//        {
-//            String result = new Executor(makeExampleProgram4(), new
-//                    FewestWaitsScheduler()).execute();
-//            checkExpectedVersusActual("Final state: [x -> 0, y -> 3]\nHistory: [0, 0, 0, 3, 3, 3, 1, 1, 1, 1, 2, 2, 2, 2]\nTermination status: graceful\n",
-//                    result);
-//        }
+        System.out.println("================");
+        System.out.println("Question 4 tests");
+        System.out.println("================");
+
+        {
+            String result = new Executor(makeExampleProgram2(), new
+                    FewestWaitsScheduler()).execute();
+            checkExpectedVersusActual("Final state: [x -> 1, y -> 1, z -> 1]\nHistory: [3, 2, 2, 1, 1, 0]\nTermination status: graceful\n",
+                    result);
+        }
+
+        {
+            String result = new Executor(makeExampleProgram3(), new
+                    FewestWaitsScheduler()).execute();
+            checkExpectedVersusActual("Final state: [x -> 0]\nHistory: []\nTermination status: deadlock\n",
+                    result);
+        }
+
+        {
+            String result = new Executor(makeExampleProgram4(), new
+                    FewestWaitsScheduler()).execute();
+            checkExpectedVersusActual("Final state: [x -> 0, y -> 3]\nHistory: [0, 0, 0, 3, 3, 3, 1, 1, 1, 1, 2, 2, 2, 2]\nTermination status: graceful\n",
+                    result);
+        }
 
 	}
 
@@ -188,33 +187,33 @@ public class Progress {
 	 * 
 	 * @return the example concurrent program used in the spec
 	 */
-//    private static ConcurrentProgram makeExampleProgram() {
-//
-//        Set<String> variables = new HashSet<>();
-//        variables.add("x");
-//        variables.add("y");
-//
-//        List<Stmt> statements0 = new ArrayList<Stmt>();
-//        statements0.add(new AssignStmt("x", new LiteralExpr(1)));
-//        statements0.add(new AssignStmt("y", new LiteralExpr(2)));
-//
-//        List<Stmt> statements1 = new ArrayList<Stmt>();
-//        statements1.add(new AssignStmt("x", new LiteralExpr(2)));
-//        statements1.add(new AssignStmt("y", new LiteralExpr(3)));
-//
-//        List<Stmt> statements2 = new ArrayList<Stmt>();
-//        statements2.add(new WaitStmt(new IdentifierExpr("x"), new
-//                LiteralExpr(2)));
-//        statements2.add(new AssignStmt("y", new LiteralExpr(4)));
-//
-//        List<List<Stmt>> threads = new ArrayList<>();
-//        threads.add(statements0);
-//        threads.add(statements1);
-//        threads.add(statements2);
-//
-//        return new ConcurrentProgram(variables, threads);
-//
-//    }
+    private static ConcurrentProgram makeExampleProgram() {
+
+        Set<String> variables = new HashSet<>();
+        variables.add("x");
+        variables.add("y");
+
+        List<Stmt> statements0 = new ArrayList<Stmt>();
+        statements0.add(new AssignStmt("x", new LiteralExpr(1)));
+        statements0.add(new AssignStmt("y", new LiteralExpr(2)));
+
+        List<Stmt> statements1 = new ArrayList<Stmt>();
+        statements1.add(new AssignStmt("x", new LiteralExpr(2)));
+        statements1.add(new AssignStmt("y", new LiteralExpr(3)));
+
+        List<Stmt> statements2 = new ArrayList<Stmt>();
+        statements2.add(new WaitStmt(new IdentifierExpr("x"), new
+                LiteralExpr(2)));
+        statements2.add(new AssignStmt("y", new LiteralExpr(4)));
+
+        List<List<Stmt>> threads = new ArrayList<>();
+        threads.add(statements0);
+        threads.add(statements1);
+        threads.add(statements2);
+
+        return new ConcurrentProgram(variables, threads);
+
+    }
 
 	/**
 	 * <strong>Creates the following concurrent program:</strong>
@@ -226,39 +225,39 @@ public class Progress {
 	 * 
 	 * @return an example concurrent program
 	 */
-//    private static ConcurrentProgram makeExampleProgram2() {
-//
-//        Set<String> variables = new HashSet<>();
-//        variables.add("x");
-//        variables.add("y");
-//        variables.add("z");
-//
-//        List<Stmt> statements0 = new ArrayList<Stmt>();
-//        statements0.add(new WaitStmt(new IdentifierExpr("z"), new
-//                LiteralExpr(1)));
-//
-//        List<Stmt> statements1 = new ArrayList<Stmt>();
-//        statements1.add(new WaitStmt(new IdentifierExpr("y"), new
-//                LiteralExpr(1)));
-//        statements1.add(new AssignStmt("z", new LiteralExpr(1)));
-//
-//        List<Stmt> statements2 = new ArrayList<Stmt>();
-//        statements2.add(new WaitStmt(new IdentifierExpr("x"), new
-//                LiteralExpr(1)));
-//        statements2.add(new AssignStmt("y", new LiteralExpr(1)));
-//
-//        List<Stmt> statements3 = new ArrayList<Stmt>();
-//        statements3.add(new AssignStmt("x", new LiteralExpr(1)));
-//
-//        List<List<Stmt>> threads = new ArrayList<>();
-//        threads.add(statements0);
-//        threads.add(statements1);
-//        threads.add(statements2);
-//        threads.add(statements3);
-//
-//        return new ConcurrentProgram(variables, threads);
-//
-//    }
+    private static ConcurrentProgram makeExampleProgram2() {
+
+        Set<String> variables = new HashSet<>();
+        variables.add("x");
+        variables.add("y");
+        variables.add("z");
+
+        List<Stmt> statements0 = new ArrayList<Stmt>();
+        statements0.add(new WaitStmt(new IdentifierExpr("z"), new
+                LiteralExpr(1)));
+
+        List<Stmt> statements1 = new ArrayList<Stmt>();
+        statements1.add(new WaitStmt(new IdentifierExpr("y"), new
+                LiteralExpr(1)));
+        statements1.add(new AssignStmt("z", new LiteralExpr(1)));
+
+        List<Stmt> statements2 = new ArrayList<Stmt>();
+        statements2.add(new WaitStmt(new IdentifierExpr("x"), new
+                LiteralExpr(1)));
+        statements2.add(new AssignStmt("y", new LiteralExpr(1)));
+
+        List<Stmt> statements3 = new ArrayList<Stmt>();
+        statements3.add(new AssignStmt("x", new LiteralExpr(1)));
+
+        List<List<Stmt>> threads = new ArrayList<>();
+        threads.add(statements0);
+        threads.add(statements1);
+        threads.add(statements2);
+        threads.add(statements3);
+
+        return new ConcurrentProgram(variables, threads);
+
+    }
 
 	/**
 	 * <strong>Creates the following deadlocked concurrent program:</strong>
@@ -269,21 +268,21 @@ public class Progress {
 	 * 
 	 * @return an example concurrent program
 	 */
-//    private static ConcurrentProgram makeExampleProgram3() {
-//
-//        Set<String> variables = new HashSet<>();
-//        variables.add("x");
-//
-//        List<Stmt> statements0 = new ArrayList<Stmt>();
-//        statements0.add(new WaitStmt(new IdentifierExpr("x"), new
-//                LiteralExpr(1)));
-//
-//        List<List<Stmt>> threads = new ArrayList<>();
-//        threads.add(statements0);
-//
-//        return new ConcurrentProgram(variables, threads);
-//
-//    }
+    private static ConcurrentProgram makeExampleProgram3() {
+
+        Set<String> variables = new HashSet<>();
+        variables.add("x");
+
+        List<Stmt> statements0 = new ArrayList<Stmt>();
+        statements0.add(new WaitStmt(new IdentifierExpr("x"), new
+                LiteralExpr(1)));
+
+        List<List<Stmt>> threads = new ArrayList<>();
+        threads.add(statements0);
+
+        return new ConcurrentProgram(variables, threads);
+
+    }
 
 	/**
 	 * <strong>Creates the following concurrent program:</strong>
@@ -296,53 +295,53 @@ public class Progress {
 	 * 
 	 * @return an example concurrent program
 	 */
-//    private static ConcurrentProgram makeExampleProgram4() {
-//
-//        Set<String> variables = new HashSet<>();
-//        variables.add("x");
-//        variables.add("y");
-//
-//        List<Stmt> statements0 = new ArrayList<Stmt>();
-//        statements0.add(new WaitStmt(new IdentifierExpr("x"), new
-//                LiteralExpr(0)));
-//        statements0.add(new WaitStmt(new IdentifierExpr("x"), new
-//                LiteralExpr(0)));
-//        statements0.add(new AssignStmt("y", new LiteralExpr(1)));
-//
-//        List<Stmt> statements1 = new ArrayList<Stmt>();
-//        statements1.add(new WaitStmt(new IdentifierExpr("x"), new
-//                LiteralExpr(0)));
-//        statements1.add(new WaitStmt(new IdentifierExpr("x"), new
-//                LiteralExpr(0)));
-//        statements1.add(new WaitStmt(new IdentifierExpr("x"), new
-//                LiteralExpr(0)));
-//        statements1.add(new AssignStmt("y", new LiteralExpr(2)));
-//
-//        List<Stmt> statements2 = new ArrayList<Stmt>();
-//        statements2.add(new WaitStmt(new IdentifierExpr("x"), new
-//                LiteralExpr(0)));
-//        statements2.add(new WaitStmt(new IdentifierExpr("x"), new
-//                LiteralExpr(0)));
-//        statements2.add(new WaitStmt(new IdentifierExpr("x"), new
-//                LiteralExpr(0)));
-//        statements2.add(new AssignStmt("y", new LiteralExpr(3)));
-//
-//        List<Stmt> statements3 = new ArrayList<Stmt>();
-//        statements3.add(new WaitStmt(new IdentifierExpr("x"), new
-//                LiteralExpr(0)));
-//        statements3.add(new WaitStmt(new IdentifierExpr("x"), new
-//                LiteralExpr(0)));
-//        statements3.add(new AssignStmt("y", new LiteralExpr(4)));
-//
-//        List<List<Stmt>> threads = new ArrayList<>();
-//        threads.add(statements0);
-//        threads.add(statements1);
-//        threads.add(statements2);
-//        threads.add(statements3);
-//
-//        return new ConcurrentProgram(variables, threads);
-//
-//    }
+    private static ConcurrentProgram makeExampleProgram4() {
+
+        Set<String> variables = new HashSet<>();
+        variables.add("x");
+        variables.add("y");
+
+        List<Stmt> statements0 = new ArrayList<Stmt>();
+        statements0.add(new WaitStmt(new IdentifierExpr("x"), new
+                LiteralExpr(0)));
+        statements0.add(new WaitStmt(new IdentifierExpr("x"), new
+                LiteralExpr(0)));
+        statements0.add(new AssignStmt("y", new LiteralExpr(1)));
+
+        List<Stmt> statements1 = new ArrayList<Stmt>();
+        statements1.add(new WaitStmt(new IdentifierExpr("x"), new
+                LiteralExpr(0)));
+        statements1.add(new WaitStmt(new IdentifierExpr("x"), new
+                LiteralExpr(0)));
+        statements1.add(new WaitStmt(new IdentifierExpr("x"), new
+                LiteralExpr(0)));
+        statements1.add(new AssignStmt("y", new LiteralExpr(2)));
+
+        List<Stmt> statements2 = new ArrayList<Stmt>();
+        statements2.add(new WaitStmt(new IdentifierExpr("x"), new
+                LiteralExpr(0)));
+        statements2.add(new WaitStmt(new IdentifierExpr("x"), new
+                LiteralExpr(0)));
+        statements2.add(new WaitStmt(new IdentifierExpr("x"), new
+                LiteralExpr(0)));
+        statements2.add(new AssignStmt("y", new LiteralExpr(3)));
+
+        List<Stmt> statements3 = new ArrayList<Stmt>();
+        statements3.add(new WaitStmt(new IdentifierExpr("x"), new
+                LiteralExpr(0)));
+        statements3.add(new WaitStmt(new IdentifierExpr("x"), new
+                LiteralExpr(0)));
+        statements3.add(new AssignStmt("y", new LiteralExpr(4)));
+
+        List<List<Stmt>> threads = new ArrayList<>();
+        threads.add(statements0);
+        threads.add(statements1);
+        threads.add(statements2);
+        threads.add(statements3);
+
+        return new ConcurrentProgram(variables, threads);
+
+    }
 
 	/**
 	 * Compares String output of your code with output known to be correct
