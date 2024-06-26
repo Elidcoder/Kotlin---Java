@@ -52,7 +52,20 @@ public class PriorityQueue<T extends Comparable<T>> implements
 	 * @throws PQException if the priority queue is full
 	 */
 	public void add(T newEntry) throws PQException {
-	    // TODO: Implement this method for Question 2
+	    if (size == max_size){
+			throw new PQException("Maximum size reached");
+		}
+		items[size] = newEntry;
+		int position = size;
+		int parent = (size - 1)/2;
+		while (parent >= 0 && items[parent].compareTo(items[parent+1]) < 0) {
+			T temp = items[parent];
+			items[parent] = items[position];
+			items[position] = temp;
+			position = parent;
+			parent = (parent - 1)/2;
+		}
+		size ++;
 	}
 
 	/**
@@ -71,7 +84,18 @@ public class PriorityQueue<T extends Comparable<T>> implements
 	 * <strong>Implement this method for Question 2</strong>
 	 */
 	private void PQRebuild(int root) {
-	    // TODO: Implement this method for Question 2
+	    if (root * 2  + 1 < size){
+			int child = root * 2 + 1;
+			if (items[child].compareTo(items[child + 1]) < 0){
+				child ++;
+			}
+			if (items[root].compareTo(items[child]) < 0) {
+				T temp = items[root];
+				items[root] = items[child];
+				items[child] = temp;
+				PQRebuild(child);
+			}
+		}
 	}
 
 	public Iterator<Object> iterator() {

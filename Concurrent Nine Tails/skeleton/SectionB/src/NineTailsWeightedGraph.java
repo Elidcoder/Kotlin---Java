@@ -1,3 +1,8 @@
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
 /**
   * You must implement the <code>constructGraph</code> and <code>constructMinimumSpanningTree</code> methods.
   *
@@ -24,7 +29,8 @@ public class NineTailsWeightedGraph {
 	 * <strong>Implement this method for Question 3</strong>
 	 */
 	private void constructGraph() {
-	    // TODO: Implement this method for Question 3
+
+
 	}
 
 	/**

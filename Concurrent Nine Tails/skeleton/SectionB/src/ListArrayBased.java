@@ -59,6 +59,13 @@ public class ListArrayBased<T> implements ListInterface<T> {
 	 */
 	public void add(int givenPosition, T newItem)
 			throws ListIndexOutOfBoundsException {
+		if (givenPosition >= 1 && givenPosition <= length) {
+			list[translate(givenPosition)] = newItem;
+			length ++;
+		}
+		else {
+			throw new ListIndexOutOfBoundsException("Position out of range");
+		}
 	    // TODO: Implement this method for Question 1
 	}
 

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Battleships/Battleships.iml" filepath="$PROJECT_DIR$/Battleships/Battleships.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Kotlin &amp; Java.iml" filepath="$PROJECT_DIR$/.idea/Kotlin &amp; Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Maze app/Maze app.iml" filepath="$PROJECT_DIR$/Maze app/Maze app.iml" />
       <module fileurl="file://$PROJECT_DIR$/AeroplaneAndCPA/AeroplaneAndCPA/SectionA/SectionA.iml" filepath="$PROJECT_DIR$/AeroplaneAndCPA/AeroplaneAndCPA/SectionA/SectionA.iml" />
       <module fileurl="file://$PROJECT_DIR$/AeroplaneAndCPA/AeroplaneAndCPA/SectionB/SectionB.iml" filepath="$PROJECT_DIR$/AeroplaneAndCPA/AeroplaneAndCPA/SectionB/SectionB.iml" />
     </modules>
